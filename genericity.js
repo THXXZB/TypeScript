@@ -65,15 +65,15 @@ var Article = /** @class */ (function () {
     }
     return Article;
 }());
-var MySqlDB = /** @class */ (function () {
-    function MySqlDB() {
+var MySqlDB1 = /** @class */ (function () {
+    function MySqlDB1() {
     }
     // 传入的参数使用User接口，验证传入数据的合法性
-    MySqlDB.prototype.add = function (info) {
+    MySqlDB1.prototype.add = function (info) {
         console.log(info);
         return true;
     };
-    return MySqlDB;
+    return MySqlDB1;
 }());
 var u = new User();
 u.userName = 'tt';
@@ -81,15 +81,17 @@ u.password = 123;
 var a = new Article();
 a.title = 'beautiful flowers';
 a.desc = '...';
-var db = new MySqlDB();
+var db = new MySqlDB1();
 db.add(u);
-var db2 = new MySqlDB();
+var db2 = new MySqlDB1();
 db2.add(a);
 // 定义一个操作mysql数据库的类
 var MySqlDb = /** @class */ (function () {
     function MySqlDb() {
+        console.log('数据库建立连接');
     }
     MySqlDb.prototype.add = function (info) {
+        console.log(info);
         return true;
     };
     MySqlDb.prototype.update = function (info, id) {
@@ -106,6 +108,7 @@ var MySqlDb = /** @class */ (function () {
 // 定义一个操作mssql数据库的类
 var MsSqlDb = /** @class */ (function () {
     function MsSqlDb() {
+        console.log('数据库建立连接');
     }
     MsSqlDb.prototype.add = function (info) {
         throw new Error("Method not implemented.");
@@ -124,6 +127,7 @@ var MsSqlDb = /** @class */ (function () {
 // 定义一个操作MongoDB数据库的类
 var MongoDb = /** @class */ (function () {
     function MongoDb() {
+        console.log('数据库建立连接');
     }
     MongoDb.prototype.add = function (info) {
         throw new Error("Method not implemented.");
@@ -139,3 +143,16 @@ var MongoDb = /** @class */ (function () {
     };
     return MongoDb;
 }());
+// 操作用户表，定义一个user表和数据库做映射
+var Users = /** @class */ (function () {
+    function Users() {
+    }
+    return Users;
+}());
+var users = new Users();
+users.name = 'tt';
+users.passW = '123';
+// 使用mysql数据库操作Users表，约束只能传入Users对象
+var mySql = new MySqlDb();
+mySql.add(users);
+// mySql.add({name:'r', passWs: '123'})  报错

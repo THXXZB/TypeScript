@@ -77,7 +77,7 @@ class Article{
   title:string | undefined;
   desc:string | undefined;
 }
-class MySqlDB<T>{
+class MySqlDB1<T>{
   // 传入的参数使用User接口，验证传入数据的合法性
   add(info:T):boolean{
     console.log(info)
@@ -90,9 +90,9 @@ u.password = 123
 let a = new Article()
 a.title = 'beautiful flowers'
 a.desc = '...'
-let db = new MySqlDB<User>()
+let db = new MySqlDB1<User>()
 db.add(u)
-let db2 = new MySqlDB<Article>()
+let db2 = new MySqlDB1<Article>()
 db2.add(a)
 
 
@@ -114,7 +114,11 @@ interface DBI<T> {
 }
 // 定义一个操作mysql数据库的类
 class MySqlDb<T> implements DBI<T>{
+  constructor(){
+    console.log('数据库建立连接')
+  }
   add(info:T):boolean {
+    console.log(info)
     return true
   }
   update(info: T, id: number): boolean {
@@ -129,6 +133,9 @@ class MySqlDb<T> implements DBI<T>{
 }
 // 定义一个操作mssql数据库的类
 class MsSqlDb<T> implements DBI<T>{
+  constructor(){
+    console.log('数据库建立连接')
+  }
   add(info: T): boolean {
     throw new Error("Method not implemented.")
   }
@@ -144,6 +151,9 @@ class MsSqlDb<T> implements DBI<T>{
 }
 // 定义一个操作MongoDB数据库的类
 class MongoDb<T> implements DBI<T>{
+  constructor(){
+    console.log('数据库建立连接')
+  }
   add(info: T): boolean {
     throw new Error("Method not implemented.")
   }
@@ -157,3 +167,18 @@ class MongoDb<T> implements DBI<T>{
     throw new Error("Method not implemented.")
   }
 }
+
+// 操作用户表，定义一个user表和数据库做映射
+class Users {
+  name:string | undefined
+  passW:string | undefined
+}
+let users = new Users()
+users.name = 'tt'
+users.passW = '123'
+
+// 使用mysql数据库操作Users表，约束只能传入Users对象
+let mySql = new MySqlDb<Users>()
+mySql.add(users)
+// mySql.add({name:'r', passWs: '123'})  报错
+
