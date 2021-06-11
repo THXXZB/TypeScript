@@ -1,6 +1,5 @@
 "use strict";
-exports.__esModule = true;
-exports.MongoDB = exports.MsSqlDB = exports.MySqlDB = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
 // 定义一个操作mysql数据库的类
 var MySqlDB = /** @class */ (function () {
     function MySqlDB() {
@@ -16,7 +15,7 @@ var MySqlDB = /** @class */ (function () {
     MySqlDB.prototype.get = function (id) {
         throw new Error("Method not implemented.");
     };
-    MySqlDB.prototype["delete"] = function (id) {
+    MySqlDB.prototype.delete = function (id) {
         throw new Error("Method not implemented.");
     };
     return MySqlDB;
@@ -37,7 +36,7 @@ var MsSqlDB = /** @class */ (function () {
     MsSqlDB.prototype.get = function (id) {
         throw new Error("Method not implemented.");
     };
-    MsSqlDB.prototype["delete"] = function (id) {
+    MsSqlDB.prototype.delete = function (id) {
         throw new Error("Method not implemented.");
     };
     return MsSqlDB;
@@ -58,7 +57,7 @@ var MongoDB = /** @class */ (function () {
     MongoDB.prototype.get = function (id) {
         throw new Error("Method not implemented.");
     };
-    MongoDB.prototype["delete"] = function (id) {
+    MongoDB.prototype.delete = function (id) {
         throw new Error("Method not implemented.");
     };
     return MongoDB;

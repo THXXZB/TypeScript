@@ -1,6 +1,5 @@
 "use strict";
-exports.__esModule = true;
-exports.stuMongo = exports.stuMsSql = exports.stuMySql = exports.Stu = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
 var dbClass_1 = require("../module/dbClass");
 var Stu = /** @class */ (function () {
     function Stu() {
